@@ -1,0 +1,23 @@
+#submitButton {
+    margin: 10px;
+}
+#header {
+    padding: 20px;
+}
+.jumbotron{
+    margin-left: 20%;
+    margin-right: 20%;
+    
+}
+#realTime{
+    font-family: 'Heebo', sans-serif;
+    text-align: right;
+    font-size: 20px;
+    color: yellow
+}
+.card-body{
+padding: 5px;
+}
+#arrivalInput , #leavingInput{
+    max-width: 250px;
+}

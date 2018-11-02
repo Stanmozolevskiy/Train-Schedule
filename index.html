@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="assets/javascript/main.js"></script>
+
+</head>
+
+<body>
+  <div class="jumbotron" style="background-color:white">
+    <div id="header" style="text-align: center; background-color:black; color:white;">
+      <h1 class="display-4">Train Schedule</h1>
+      <p class="display-6">Greyhoundbus company</p>
+      <p id="realTime"></p>
+    </div>
+    <br>
+    <div class="card">
+      <div class="card-header">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Destenation</th>
+              <th scope="col">Leaving Time</th>
+              <th scope="col">Arrival Time</th>
+              <th scope="col">Price</th>
+              <th scope="col">Wifi</th>
+              <th scope="col">Snacks</th>
+            </tr>
+          </thead>
+      </div>
+      <div class="card-body">
+        <tbody>
+          <tr>
+              <td>Boston</td>
+              <td>11 17th 2018 10:15 pm</td>
+              <td>11 16th 2018 10:00 am</td>
+              <td>$100</td>
+              <td>Yes</td>
+              <td>Yes</td>
+            </tr>
+        </tbody>
+      </div>
+      </table>
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <div class="card">
+    <div class="card-header">
+      <div class="form-group">
+        <label for="nameInput">Destenation</label>
+        <input type="email" class="form-control" id="destenationInput" aria-describedby="emailHelp" placeholder="Enter destenation">
+      </div>
+      <div class="form-group">
+        <label for="roleInput">Leaving Time</label>
+       <input id="leavingInput"  class="form-control" type="datetime-local" name="roleInput" value="2018-11-02T08:30" min="2018-11-01T08:30" max="2020-06-30T16:30">
+      </div>
+      <div class="form-group">
+        <label for="startDate">Arrival Time </label>
+        <input id="arrivalInput"  class="form-control" type="datetime-local" name="startDate" value="2018-11-02T08:30" min="2018-11-01T08:30" max="2020-06-30T16:30">
+      </div>
+      <div class="form-group">
+        <label for="nameInput">Price in US Dollars</label>
+        <input type="number" class="form-control" id="priceInput" aria-describedby="emailHelp" placeholder="Enter Price">
+        <br>
+        <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
+

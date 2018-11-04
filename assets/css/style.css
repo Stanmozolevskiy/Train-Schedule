@@ -1,3 +1,16 @@
+body{
+    background: url(../images/train-body.jpg) no-repeat center center fixed; 
+     background-size: cover;
+     height: 100%;
+     overflow-x: hidden;
+
+}
+tr:hover{
+background-color: #DAC3BE;
+}
+.jumbotron{
+opacity: .9;
+}
 #submitButton {
     margin: 10px;
 }
@@ -16,7 +29,7 @@
     color: yellow
 }
 .card-body{
-padding: 5px;
+    padding: 5px;
 }
 #arrivalInput , #leavingInput{
     max-width: 250px;

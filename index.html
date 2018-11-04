@@ -19,9 +19,9 @@
 </head>
 
 <body>
-  <div class="jumbotron" style="background-color:white">
+  <div class="jumbotron" >
     <div id="header" style="text-align: center; background-color:black; color:white;">
-      <h1 class="display-4">Train Schedule</h1>
+      <h1 class="display-4">Russian Railroad</h1>
       <p class="display-6">Greyhoundbus company</p>
       <p id="realTime"></p>
     </div>
@@ -31,24 +31,18 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">Destenation</th>
-              <th scope="col">Leaving Time</th>
-              <th scope="col">Arrival Time</th>
-              <th scope="col">Price</th>
-              <th scope="col">Wifi</th>
-              <th scope="col">Snacks</th>
+              <th scope="col">Train Name</th>
+              <th scope="col">Destination</th>
+              <th scope="col">Frequency (min)</th>
+              <th scope="col">Next Arrival</th>
+              <th scope="col">Minutes Away</th>
             </tr>
           </thead>
       </div>
       <div class="card-body">
         <tbody>
           <tr>
-              <td>Boston</td>
-              <td>11 17th 2018 10:15 pm</td>
-              <td>11 16th 2018 10:00 am</td>
-              <td>$100</td>
-              <td>Yes</td>
-              <td>Yes</td>
+             
             </tr>
         </tbody>
       </div>
@@ -61,22 +55,22 @@
   <div class="card">
     <div class="card-header">
       <div class="form-group">
-        <label for="nameInput">Destenation</label>
-        <input type="email" class="form-control" id="destenationInput" aria-describedby="emailHelp" placeholder="Enter destenation">
+        <label for="nameInput">Train Name</label>
+        <input type="text" class="form-control" id="trainNameInput" name="nameInput"  placeholder="Enter Train Name" required>
       </div>
       <div class="form-group">
-        <label for="roleInput">Leaving Time</label>
-       <input id="leavingInput"  class="form-control" type="datetime-local" name="roleInput" value="2018-11-02T08:30" min="2018-11-01T08:30" max="2020-06-30T16:30">
+        <label for="destinationInput">Destination</label>
+       <input id="destenationInput" class="form-control" type="text" name="destinationInput"  placeholder="Enter Destination" required>
       </div>
       <div class="form-group">
-        <label for="startDate">Arrival Time </label>
-        <input id="arrivalInput"  class="form-control" type="datetime-local" name="startDate" value="2018-11-02T08:30" min="2018-11-01T08:30" max="2020-06-30T16:30">
+        <label for="firstTimelInput">First Train Time (military time)</label>
+        <input id="firstTimelInput" class="form-control" type="text" name="firstTimelInput" placeholder="HH:MM" required maxlength="5" required>
       </div>
       <div class="form-group">
-        <label for="nameInput">Price in US Dollars</label>
-        <input type="number" class="form-control" id="priceInput" aria-describedby="emailHelp" placeholder="Enter Price">
+        <label for="frequency">Frequency (min)</label>
+        <input type="number" class="form-control" id="frequencyInput"  placeholder="Every  how many minutes" required>
         <br>
-        <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+        <button type="submit" id="submitButton" class="btn btn-primary">Add Train</button>
       </div>
     </div>
   </div>

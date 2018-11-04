@@ -13,30 +13,29 @@ $(document).ready(function () {
     firebase.initializeApp(config);
     var database = firebase.database();
 
-    var destenation = "";
-    var leavingTime = "";
-    var arrivalTime = "";
-    var price = 0;
+    var trainName = $("#trainNameInput").val().trim()
+    var destenation = $("#destenationInput").val().trim()
+    var firstTime = $("#firstTimelInput").val().trim()
+    var frequency = $("#frequencyInput").val().trim()
 
-//Shows Real Time
+    //Shows Real Time
     function showTime() {
         var date = new Date();
         var h = date.getHours(); //0-23
         var m = date.getMinutes(); //0-59
         var s = date.getSeconds(); //0-59
-       
 
-        if(h == 0){
+        if (h == 0) {
             h = 12
         }
-        if(h > 12){
+        if (h > 12) {
             h = h - 12;
         }
         h = (h < 10) ? "0" + h : h;
         m = (m < 10) ? "0" + m : m;
-        s = (s < 10) ? "0" + s: s;
+        s = (s < 10) ? "0" + s : s;
 
-        var time = h + ":" + m + ":" + s ;
+        var time = h + ":" + m + ":" + s;
         $("#realTime").html(time)
         $("#realTime").text(time)
 
@@ -45,56 +44,47 @@ $(document).ready(function () {
     showTime()
 
     $("#submitButton").on("click", function (event) {
-        event.preventDefault();
-
-        destenation = $("#destenationInput").val().trim()
-        leavingTime = $("#leavingInput").val().trim()
-        arrivalTime = $("#arrivalInput").val().trim()
-        price = $("#priceInput").val().trim()
-
-        database.ref().push({
-            direction: destenation,
-            lTime: leavingTime,
-            aTime: arrivalTime,
-            Ticketprice: price,
-            dateAdded: firebase.database.ServerValue.TIMESTAMP
-        })
+        event.preventDefault()
+        console.log(trainName)
+            database.ref().push({
+                TrainName: trainName,
+                Destenation: destenation,
+                FirstTime: firstTime,
+                Frequency: frequency,
+                dateAdded: firebase.database.ServerValue.TIMESTAMP
+            })
         //clears input values
-        $("#destenationInput").val("")
-        $("#leavingInput").val("")
-        $("#arrivalInput").val("")
-        $("#priceInput").val("")
-
+        $(".form-control").val("")
     })
 
-    database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function (snapshot) {
+    database.ref().orderByChild("dateAdded").limitToLast(20).on("child_added", function (snapshot) {
         var sv = snapshot.val()
         var emptyTR = $("<tr>")
 
-        var leavingTimeConverted = moment(sv.lTime).format("MM Do YYYY h:mm a");
-        var arrivingTimeConverted = moment(sv.aTime).format("MM Do YYYY h:mm a");
-        var leaving =  moment().diff(sv.lTime, 'minutes')
-        console.log( "Leaving in:" + leaving + " " + "minutes")
+        var firstTime = snapshot.val().FirstTime;
+        var frequency = snapshot.val().Frequency;
+        var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+        var diffTime = moment().diff(firstTimeConverted, "minutes");
+        var tRemainder = diffTime % frequency;
+        // minutes until train
+        var minutesAway = frequency - tRemainder;
+        var nextArrival = moment().add(minutesAway, "minutes").format("hh:mm A");
 
-        var destenationTD = $("<td>").text(sv.direction);
-        var leavingTimeTD = $("<td>").text(leavingTimeConverted);
-        var arrivalTimeTD = $("<td>").text(arrivingTimeConverted);
-        var priceTD = $("<td>").text("$" + sv.Ticketprice);
-        var wifiTD = $("<td>").text(" Yes");
-        var snacksTD = $("<td>").text("Yes")
+        var trainNameTD = $("<td>").text(sv.TrainName);
+        var destenationTD = $("<td>").text(sv.Destenation);
+        var firstTimeTD = $("<td>").text(sv.Frequency + " " + "min");
+        var frequencyTD = $("<td>").text(nextArrival);
+        var minAway = $("<td>").text(minutesAway + " " + "min");
 
-        emptyTR.append(destenationTD )
-        emptyTR.append(leavingTimeTD )
-        emptyTR.append(arrivalTimeTD )
-        emptyTR.append(priceTD )
-        emptyTR.append(wifiTD)
-        emptyTR.append(snacksTD )
+        emptyTR.append(trainNameTD)
+        emptyTR.append(destenationTD)
+        emptyTR.append(firstTimeTD)
+        emptyTR.append(frequencyTD)
+        emptyTR.append(minAway)
         $("tbody").append(emptyTR)
+
     })
-
 })
-
-
 
 
 

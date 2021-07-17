@@ -1,13 +1,14 @@
 $(document).ready(function () {
 
     // Initialize Firebase
-    var config = {
+    const config = {
         apiKey: "AIzaSyAlzaTBiMxUbl5r-GfPRg85uMaEmlyLT-s",
         authDomain: "train-schedule-6bc57.firebaseapp.com",
         databaseURL: "https://train-schedule-6bc57.firebaseio.com",
         projectId: "train-schedule-6bc57",
         storageBucket: "train-schedule-6bc57.appspot.com",
-        messagingSenderId: "461940784039"
+        messagingSenderId: "461940784039",
+        appId: "1:461940784039:web:58999a0f0355aaa95bd482"
     };
 
     firebase.initializeApp(config);

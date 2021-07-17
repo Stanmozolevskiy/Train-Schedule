@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     // Initialize Firebase
-    const config = {
+    const firebaseConfig = {
         apiKey: "AIzaSyAlzaTBiMxUbl5r-GfPRg85uMaEmlyLT-s",
         authDomain: "train-schedule-6bc57.firebaseapp.com",
         databaseURL: "https://train-schedule-6bc57.firebaseio.com",
@@ -11,7 +11,7 @@ $(document).ready(function () {
         appId: "1:461940784039:web:58999a0f0355aaa95bd482"
     };
 
-    firebase.initializeApp(config);
+    firebase.initializeApp(firebaseConfig);
     var database = firebase.database();
 
     var trainName = $("#trainNameInput").val().trim()

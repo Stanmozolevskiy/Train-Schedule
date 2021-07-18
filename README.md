@@ -5,6 +5,6 @@ I used simple post and get commands to save and retrieve data from the database.
 
 https://stanmozolevskiy.github.io/Train-Schedule/index.html
 
-/Polar express.png
+//Polar express.png
 
 

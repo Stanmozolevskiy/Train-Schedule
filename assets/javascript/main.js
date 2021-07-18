@@ -16,18 +16,22 @@ $(document).ready(function () {
     const firstTime = $("#firstTimelInput").val().trim()
     const frequency = $("#frequencyInput").val().trim()
     
+
     firebase.initializeApp(firebaseConfig);
      const database = firebase.database();
     
     $("#submitButton").on("click", function (event) {
-        event.preventDefault()
-        database.ref().push({
+        event.preventDefault();
+
+        database.ref("schedule/").push({
             TrainName: trainName,
             Destenation: destenation,
             FirstTime: firstTime,
             Frequency: frequency,
             dateAdded: firebase.database.ServerValue.TIMESTAMP
         })
+        console.log(trainName)
+
         //clears input values
         $(".form-control").val("")
     })

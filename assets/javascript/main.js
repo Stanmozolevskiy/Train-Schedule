@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    
     // Initialize Firebase
     const firebaseConfig = {
         apiKey: "AIzaSyAlzaTBiMxUbl5r-GfPRg85uMaEmlyLT-s",
@@ -11,14 +11,27 @@ $(document).ready(function () {
         appId: "1:461940784039:web:58999a0f0355aaa95bd482"
     };
 
+    const trainName = $("#trainNameInput").val().trim()
+    const destenation = $("#destenationInput").val().trim()
+    const firstTime = $("#firstTimelInput").val().trim()
+    const frequency = $("#frequencyInput").val().trim()
+    
     firebase.initializeApp(firebaseConfig);
-    var database = firebase.database();
-
-    var trainName = $("#trainNameInput").val().trim()
-    var destenation = $("#destenationInput").val().trim()
-    var firstTime = $("#firstTimelInput").val().trim()
-    var frequency = $("#frequencyInput").val().trim()
-
+     const database = firebase.database();
+    
+    $("#submitButton").on("click", function (event) {
+        event.preventDefault()
+        database.ref().push({
+            TrainName: trainName,
+            Destenation: destenation,
+            FirstTime: firstTime,
+            Frequency: frequency,
+            dateAdded: firebase.database.ServerValue.TIMESTAMP
+        })
+        //clears input values
+        $(".form-control").val("")
+    })
+    
     //Shows Real Time
     function showTime() {
         var date = new Date();
@@ -43,20 +56,6 @@ $(document).ready(function () {
         setTimeout(showTime, 1000);
     }
     showTime()
-
-    $("#submitButton").on("click", function (event) {
-        event.preventDefault()
-        console.log(trainName)
-            database.ref().push({
-                TrainName: trainName,
-                Destenation: destenation,
-                FirstTime: firstTime,
-                Frequency: frequency,
-                dateAdded: firebase.database.ServerValue.TIMESTAMP
-            })
-        //clears input values
-        $(".form-control").val("")
-    })
 
     database.ref().orderByChild("dateAdded").limitToLast(20).on("child_added", function (snapshot) {
         var sv = snapshot.val()

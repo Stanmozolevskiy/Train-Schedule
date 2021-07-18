@@ -4,18 +4,15 @@ $(document).ready(function () {
     DataAccess.getData();
     showTime();
 
-    const trainData =
-    {
-        trainName: $("#trainNameInput").val().trim(),
-        destenation : $("#destenationInput").val().trim(),
-        firstTime : $("#firstTimelInput").val().trim(),
-        frequency : $("#frequencyInput").val().trim()
-    }
-    
-
     $("#submitButton").on("click", function (event) {
+        const trainData =
+        {
+            trainName: $("#trainNameInput").val().trim(),
+            destenation : $("#destenationInput").val().trim(),
+            firstTime : $("#firstTimelInput").val().trim(),
+            frequency : $("#frequencyInput").val().trim()
+        }
         event.preventDefault();
-        console.log()
         DataAccess.postData(trainData);
 
         //clears input values

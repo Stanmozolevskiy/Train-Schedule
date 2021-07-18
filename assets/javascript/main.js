@@ -11,26 +11,26 @@ $(document).ready(function () {
         appId: "1:461940784039:web:58999a0f0355aaa95bd482"
     };
 
-    const trainName = $("#trainNameInput").val().trim()
-    const destenation = $("#destenationInput").val().trim()
-    const firstTime = $("#firstTimelInput").val().trim()
-    const frequency = $("#frequencyInput").val().trim()
-    
+    var trainName = document.getElementById("trainNameInput");
+    var destenation = document.getElementById("destenationInput")
+    var firstTime = document.getElementById("firstTimelInput")
+    var frequency = document.getElementById("frequencyInput")
 
+    
+    
     firebase.initializeApp(firebaseConfig);
-     const database = firebase.database();
+    const database = firebase.database();
     
     $("#submitButton").on("click", function (event) {
         event.preventDefault();
-
-        database.ref("schedule/").push({
-            TrainName: trainName,
-            Destenation: destenation,
-            FirstTime: firstTime,
-            Frequency: frequency,
+        
+        database.ref().set({
+            TrainName: trainName.value.trim(),
+            Destenation: destenation.value.trim(),
+            FirstTime: firstTime.value.trim(),
+            Frequency: frequency.value.trim(),
             dateAdded: firebase.database.ServerValue.TIMESTAMP
         })
-        console.log(trainName)
 
         //clears input values
         $(".form-control").val("")
